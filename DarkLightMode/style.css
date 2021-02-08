@@ -1,0 +1,128 @@
+html {
+  height: 100%;
+  font-family: "Montserrat";
+
+  display: grid;
+  align-items: center;
+  justify-items: center;
+
+  --bg: #fcfcfc;
+  --bg-panel: #ebebeb;
+  --color-headings: #0077ff;
+  --color-text: #333333;
+}
+
+html[data-theme="dark"] {
+  --bg: #333333;
+  --bg-panel: #434343;
+  --color-headings: #3694ff;
+  /* --color-headings: #fcfcfc; */
+  --color-text: #b5b5b5;
+}
+
+body {
+  background-color: var(--bg);
+}
+
+.container {
+  background-color: var(--bg-panel);
+  margin: 5em;
+  padding: 5em;
+  border-radius: 15px;
+
+  display: grid;
+  grid-template-columns: 80% auto;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "title switch"
+    "content content";
+}
+
+.container h1 {
+  margin: 0;
+  color: var(--color-headings);
+  /* white heading */
+  /* color: var(--color-text); */
+}
+
+.container p {
+  color: var(--color-text);
+  grid-area: content;
+  font-size: 1.1em;
+  line-height: 1.8em;
+  margin-top: 2em;
+}
+
+/* hiding the check box */
+input[type="checkbox"] {
+  height: 0;
+  width: 0;
+  visibility: hidden;
+}
+
+/* making a cylinder shape */
+label {
+  /*  // cursor tuned to pointer when comes in contact */
+  cursor: pointer;
+
+  /* hide the text Toggle */
+  text-indent: 999px;
+
+  /* width and height of cylinder */
+  width: 52px;
+  height: 27px;
+
+  /* color of cylinder */
+  background: grey;
+
+  /* float- left/right will specifies how an element should float. */
+  float: left;
+  border-radius: 100px;
+  position: relative;
+}
+
+label:after {
+  /* ball inside cylinder toggle */
+  content: "";
+  position: absolute;
+  /* position property */
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+
+  /* color of ball */
+  background: #fff;
+  /*  */
+  border-radius: 90px;
+  /*  */
+  transition: 0.3s;
+}
+
+/* blue color inside switch 
+when checked*/
+input:checked + label {
+  background: var(--color-headings);
+}
+
+/* animation of ball left to right and
+right to left */
+input:checked + label:after {
+  /*  turn to right leaving 3 px in right*/
+  left: calc(100% - 5px);
+  /* move -90% right from the current position */
+  transform: translateX(-90%);
+}
+
+/* bubble effect */
+label:active:after {
+  width: 45px;
+}
+
+html.transition,
+html.transition *,
+html.transition *:before,
+html.transition *:after {
+  transition: all 700ms !important;
+  transition-delay: 0 !important;
+}

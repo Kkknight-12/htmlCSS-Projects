@@ -1,0 +1,208 @@
+@import "./base/animation";
+@import "./base/base";
+@import "./base/typography";
+@import "./base/utilities";
+
+@import "./abstracts/function";
+@import "./abstracts/mixins";
+@import "./abstracts/variables";
+
+@import "./components/button";
+
+@import "./layout/header";
+@import "./layout/grid";
+
+@import "./pages/home";
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.7;
+  color: $color-grey-dark;
+  padding: 2rem;
+}
+
+/* heading */
+.header {
+  position: relative;
+  height: 100vh;
+  background: linear-gradient(
+      rgba(120, 204, 105, 0.876),
+      rgba(40, 180, 133, 0.479)
+    ),
+    url(../images/hero.jpeg) no-repeat center/cover;
+  /* The clip-path property lets you clip an element to a basic shape or to an SVG source. */
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  // margin-bottom: 5rem;
+}
+
+.logo-box {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+.logo {
+  height: 30px;
+  border-radius: 50%;
+}
+
+.text-box {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+
+.heading-primary {
+  color: #fff;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.heading-primary-main {
+  display: block;
+  font-size: 60px;
+  font-weight: 400;
+  letter-spacing: 3.1rem;
+  padding-left: 20px;
+  text-align: center;
+  color: #fff;
+  margin: auto;
+
+  /* animation */
+  animation-name: moveInLeft;
+  animation-duration: 4s;
+  /* animation-iteration-count: 2; */
+  animation-timing-function: linear;
+  animation-duration: 2s;
+}
+.heading-primary-sub {
+  display: block;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 1.2rem;
+  padding-left: 10px;
+  text-align: center;
+  color: #fff;
+
+  /* animation */
+  animation-name: moveInRight;
+  animation-duration: 4s;
+  /* animation-iteration-count: 2; */
+  animation-timing-function: linear;
+  animation-duration: 2s;
+}
+
+.position {
+  transform: translateX(0);
+  font-size: 70px;
+}
+
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  25% {
+    opacity: 0.4;
+    transform: translateX(-40px);
+  }
+  75% {
+    opacity: 0.7;
+    transform: translateX(100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  25% {
+    opacity: 0.4;
+    transform: translateX(40px);
+  }
+  75% {
+    opacity: 0.7;
+    transform: translateX(-100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* button */
+.btn {
+  margin-top: 3rem;
+}
+
+.btn:link,
+.btn:visited {
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 10px 40px;
+  display: inline-block;
+  border-radius: 100px;
+  position: relative;
+}
+
+.btn-white {
+  background: #fff;
+  color: $color-grey-dark;
+}
+
+.btn:hover {
+  /* transform: translateY(-3px); */
+}
+
+/* when button is clicked */
+.btn:active {
+  transform: translateY(3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn:after {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+  position: absolute;
+  /* top and left position will put the after
+  layer of button exactly over the original button
+  layer*/
+  top: 0;
+  left: 0;
+  /* putting the after layer behind primary layer */
+  z-index: -1;
+  transition: all 0.3s;
+}
+
+.btn-white::after {
+  background-color: #fff;
+}
+
+.btn:hover::after {
+  transform: scaleX(1.4) scaleY(1.3);
+  opacity: 0;
+}
